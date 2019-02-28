@@ -1,0 +1,38 @@
+#!/usr/bin/python3
+from git import Repo
+import os
+
+repo = Repo(os.path.dirname(os.path.realpath(__file__)))
+print(repo.untracked_files)
+
+nume = ""
+
+for file in repo.untracked_files:
+    if(file.split('/')[0] == nume):
+        repo.index.add([file])
+        print(nume, "Da", file)
+    else:
+        if(nume != ""):
+            repo.index.commit(nume)
+        nume = file.split('/')[0]
+        repo.index.add([file])
+        print(nume, "Nu", file)
+if(nume != ""):
+    repo.index.commit(nume)
+
+nume = ""
+
+changedFiles = [item.a_path for item in repo.index.diff(None)]
+
+for file in changedFiles:
+    if(file.split('/')[0] == nume):
+        repo.index.add([file])
+        print(nume, "Da", file)
+    else:
+        if(nume != ""):
+            repo.index.commit(nume)
+        nume = file.split('/')[0]
+        repo.index.add([file])
+        print(nume, "Nu", file)
+if(nume != ""):
+    repo.index.commit(nume)

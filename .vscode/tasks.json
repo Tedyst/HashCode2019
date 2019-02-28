@@ -1,0 +1,47 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "${workspaceFolder}/build.sh",
+            "args": [
+                "${fileDirname}"
+            ],
+            "presentation": {
+                "echo": false,
+                "reveal": "silent",
+                "clear": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "test",
+            "type": "shell",
+            "command": "${fileDirname}/main.exe",
+            "options": {
+                "cwd": "${fileDirname}",
+                "shell": {
+                    "executable": "bash",
+                    "args": [
+                        "-c"
+                    ]
+                }
+            },
+            "dependsOn": [
+                "build"
+            ],
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "clear": true
+            },
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        }
+    ]
+}
