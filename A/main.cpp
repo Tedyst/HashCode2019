@@ -1,7 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
+ifstream fin ("input.in");
+ofstream fout ("output.out");
 int main() {
-    cout<<"Da"<<'\n';
-    cout.flush();
+    char s[10000];
+    fin>>s;
+    fout<<s;
     return 0;
 }
